@@ -1,9 +1,20 @@
-import Home from "@/pages/Home";
-import HelloWord from "@/components/HelloWorld";
+import Home from '@/pages/Home'
+import Auth from '@/container/Auth'
 
 const routes = [
-  { path: "/", component: HelloWord },
-  { path: "/home", component: Home },
-];
+  {
+    path: '/auth',
+    component: Auth,
+    redirect: '/auth/login',
+    children: [
+      {
+        path: '/auth/login',
+        component: () => import('@/components/LoginForm'),
+        name: 'login',
+      },
+    ],
+  },
+  { path: '/home', component: Home },
+]
 
-export default routes;
+export default routes
