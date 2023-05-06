@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  name: "HomePage",
+  name: 'HomePage',
   methods: {
     goIndexPage() {
-      this.$router.push("/");
+      this.$router.push('/')
     },
   },
-};
+}
 </script>
