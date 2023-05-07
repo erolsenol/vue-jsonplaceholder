@@ -8,5 +8,9 @@
 export default {
   name: 'UserPage',
   methods: {},
+  async mounted() {
+    const users = await this.$httpConnector.get('users')
+    console.log(users)
+  },
 }
 </script>
