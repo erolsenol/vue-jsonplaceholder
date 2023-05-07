@@ -41,6 +41,10 @@ export default class HttpApi {
     return this.client.delete(resource, config)
   }
 
+  getAllPosts() {
+    return this.client.get('posts')
+  }
+
   async customRequest(config) {
     return this.client(config)
   }

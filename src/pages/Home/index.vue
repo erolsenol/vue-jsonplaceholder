@@ -5,8 +5,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'HomePage',
-  methods: {},
+  computed: {
+    ...mapGetters(['getPosts']),
+  },
+  mounted() {
+    this.$store.dispatch('getPosts')
+  },
 }
 </script>
