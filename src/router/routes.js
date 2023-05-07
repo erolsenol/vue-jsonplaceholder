@@ -1,5 +1,7 @@
-import Home from '@/pages/Home'
 import Auth from '@/container/Auth'
+import Full from '@/container/Full'
+
+import Home from '@/pages/home'
 
 const routes = [
   {
@@ -14,7 +16,18 @@ const routes = [
       },
     ],
   },
-  { path: '/home', component: Home },
+  {
+    path: '/',
+    component: Full,
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        component: Home,
+        name: 'home',
+      },
+    ],
+  },
 ]
 
 export default routes

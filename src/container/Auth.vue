@@ -14,8 +14,4 @@ export default {
 }
 </script>
 
-<style>
-.qwe {
-  background-color: aqua;
-}
-</style>
+<style></style>
