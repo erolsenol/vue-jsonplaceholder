@@ -2,6 +2,7 @@ import Auth from '@/container/Auth'
 import Full from '@/container/Full'
 
 import Home from '@/pages/home'
+import User from '@/pages/user'
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
         path: '/home',
         component: Home,
         name: 'home',
+      },
+      {
+        path: '/user',
+        component: User,
+        name: 'user',
       },
     ],
   },

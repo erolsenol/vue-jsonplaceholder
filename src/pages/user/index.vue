@@ -1,12 +1,12 @@
 <template>
   <div class="d-flex flex-column">
-    <span>Home</span>
+    <span>User</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomePage',
+  name: 'UserPage',
   methods: {},
 }
 </script>
