@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer>
+  <v-navigation-drawer v-model="$store.state.navigationDrawerValue">
     <v-list>
       <v-list-item
         prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"
@@ -41,12 +41,18 @@
 export default {
   name: 'NavigationDrawer',
   data: () => ({
+    navigationDrawerValue: true,
     selectedItem: 0,
     items: [
-      { text: 'My Files', icon: 'fas fa-home', name: 'home' },
+      { text: 'Posts', icon: 'fas fa-home', name: 'home' },
       { text: 'Shared with me', icon: 'fas fa-user', name: 'user' },
     ],
   }),
+  watch: {
+    navigationDrawerValue(val) {
+      console.log('navigationDrawerValue', val)
+    },
+  },
   computed: {
     currentRouteName() {
       return this.$route.name
