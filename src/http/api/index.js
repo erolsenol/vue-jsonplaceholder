@@ -45,6 +45,10 @@ export default class HttpApi {
     return this.client.get('posts')
   }
 
+  getAllUsers() {
+    return this.client.get('users')
+  }
+
   async customRequest(config) {
     return this.client(config)
   }

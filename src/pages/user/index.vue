@@ -1,16 +1,19 @@
 <template>
   <div class="d-flex flex-column">
-    <span>User</span>
+    <span v-for="(user, index) in getUsers" :key="index">{{ user.name }}</span>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'UserPage',
+  computed: {
+    ...mapGetters(['getUsers']),
+  },
   methods: {},
   async mounted() {
-    const users = await this.$httpConnector.get('users')
-    console.log(users)
+    this.$store.dispatch('getUsers')
   },
 }
 </script>

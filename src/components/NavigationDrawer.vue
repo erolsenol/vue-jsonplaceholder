@@ -45,7 +45,7 @@ export default {
     selectedItem: 0,
     items: [
       { text: 'Posts', icon: 'fas fa-home', name: 'home' },
-      { text: 'Shared with me', icon: 'fas fa-user', name: 'user' },
+      { text: 'Users', icon: 'fas fa-user', name: 'user' },
     ],
   }),
   watch: {

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="500">
+  <v-card class="mx-auto">
     <v-card-text>
       <p class="text-h5">
         {{ post.title }}
