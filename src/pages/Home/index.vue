@@ -1,20 +1,18 @@
 <template>
-  <div class="d-flex flex-column">
-    <v-container fluid>
-      <v-row>
-        <v-col
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-          v-for="(post, index) in getPosts"
-          :key="index"
-        >
-          <PostItem :post="post" />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <v-container fluid>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        v-for="(post, index) in getPosts"
+        :key="index"
+      >
+        <PostItem :post="post" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

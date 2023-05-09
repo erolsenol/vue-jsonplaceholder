@@ -6,6 +6,7 @@ export default {
 
     if (postsRes.status == 200 && postsRes.data?.length > 0) {
       state.posts = postsRes.data
+      console.log('postsRes.data', postsRes.data)
     } else {
       commit('showSnackbar', {
         text: 'Post fetch failed',
@@ -18,6 +19,7 @@ export default {
 
     if (usersRes.status === 200 && usersRes.data?.length > 0) {
       state.users = usersRes.data
+      console.log('usersRes.data', usersRes.data)
     } else {
       commit('showSnackbar', {
         text: 'Users fetch failed',
