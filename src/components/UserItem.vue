@@ -18,7 +18,7 @@
       </v-list-item>
     </v-card-item>
     <v-card-item>
-      <v-list v-model:opened="open" class="pb-0">
+      <v-list class="pb-0">
         <v-list-item>
           <template v-slot:prepend>
             <v-icon icon="fas fa-envelope"></v-icon>
@@ -61,17 +61,17 @@
                     v-for="(detailText, detailKey, detailIndex) in user.company"
                     :key="user.id + '-' + detailKey"
                   >
-                    <v-list-item>
+                    <v-list-item
+                      class="text-left"
+                      :subtitle="detailText"
+                      :title="companyTitle[detailIndex]"
+                    >
                       <template v-slot:prepend>
                         <v-icon
                           size="x-small"
                           icon="fas fa-circle-dot"
                           class="mr-3"
                         ></v-icon>
-
-                        <v-list-item-text
-                          v-text="detailText"
-                        ></v-list-item-text>
                       </template>
                     </v-list-item>
                     <v-divider
@@ -99,13 +99,11 @@ export default {
   },
   data() {
     return {
-      open: ['Company'],
-      cruds: [
-        ['Create', 'fas fa-blog'],
-        ['Read', 'fas fa-blog'],
-        ['Update', 'fas fa-blog'],
-        ['Delete', 'fas fa-blog'],
-      ],
+      companyTitle: {
+        0: 'Name',
+        1: 'Catch Phrase',
+        2: 'Business',
+      },
     }
   },
 }
