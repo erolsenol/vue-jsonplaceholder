@@ -7,4 +7,12 @@ export default {
     state.snackbar.color = color
     state.snackbar.state = true
   },
+  userEditStateChange(state, { user }) {
+    const userIndex = state.users.findIndex(
+      (findUser) => findUser.id === user.id
+    )
+    if (userIndex > -1) {
+      state.users.splice(userIndex, 1, user)
+    }
+  },
 }

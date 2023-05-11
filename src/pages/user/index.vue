@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="page-user" fluid>
     <v-row>
       <v-col
         cols="12"
@@ -11,6 +11,9 @@
         <UserItem :user="user" />
       </v-col>
     </v-row>
+    <v-expand-x-transition>
+      <router-view :width="600"></router-view>
+    </v-expand-x-transition>
   </v-container>
 </template>
 
@@ -31,3 +34,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.page-user {
+  position: relative;
+}
+</style>

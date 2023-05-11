@@ -9,7 +9,12 @@
           ></v-avatar>
         </template>
         <template v-slot:append>
-          <v-btn class="ma-2" color="grey-lighten-1" icon="fas fa-edit"></v-btn>
+          <v-btn
+            class="ma-2"
+            color="grey-lighten-1"
+            icon="fas fa-edit"
+            @click="editClick"
+          ></v-btn>
         </template>
 
         <v-list-item-title>{{ user.name }}</v-list-item-title>
@@ -105,6 +110,11 @@ export default {
         2: 'Business',
       },
     }
+  },
+  methods: {
+    editClick() {
+      this.$router.push({ name: `userEdit`, params: { id: this.user.id } })
+    },
   },
 }
 </script>

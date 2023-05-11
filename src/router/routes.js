@@ -3,6 +3,7 @@ import Full from '@/container/Full'
 
 import Home from '@/pages/home'
 import User from '@/pages/user'
+import UserEdit from '@/pages/user/edit.vue'
 
 const routes = [
   {
@@ -31,6 +32,13 @@ const routes = [
         path: '/user',
         component: User,
         name: 'user',
+        children: [
+          {
+            path: '/user/edit/:id',
+            component: UserEdit,
+            name: 'userEdit',
+          },
+        ],
       },
     ],
   },

@@ -21,7 +21,7 @@
         :value="item"
         active-color="primary"
         class="menu-item"
-        :active="currentRouteName == item.name"
+        :active="currentRouteName.includes(item.name)"
         @click="goToPage(item.name)"
       >
         <template v-slot:prepend>
@@ -48,14 +48,9 @@ export default {
       { text: 'Users', icon: 'fas fa-user', name: 'user' },
     ],
   }),
-  watch: {
-    navigationDrawerValue(val) {
-      console.log('navigationDrawerValue', val)
-    },
-  },
   computed: {
     currentRouteName() {
-      return this.$route.name
+      return this.$route.path
     },
   },
   methods: {

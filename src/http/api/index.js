@@ -49,7 +49,15 @@ export default class HttpApi {
     return this.client.get('users')
   }
 
-  async customRequest(config) {
+  getUserFromId(id) {
+    return this.client.get(`users/${id}`)
+  }
+
+  userEdit({ user, id }) {
+    return this.client.put(`users/${id}`, user)
+  }
+
+  customRequest(config) {
     return this.client(config)
   }
 }
