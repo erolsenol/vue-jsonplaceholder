@@ -51,4 +51,10 @@ export default {
     }
     return false
   },
+  async getComments({ commit }, postId) {
+    const getCommentsRes = await HttpConnector.getCommentsFromPostId(postId)
+    if (getCommentsRes.status === 200) {
+      commit('setComments', { postId, comments: getCommentsRes.data })
+    }
+  },
 }

@@ -15,4 +15,10 @@ export default {
       state.users.splice(userIndex, 1, user)
     }
   },
+  setComments(state, { postId, comments }) {
+    const postIndex = state.posts.findIndex((post) => post.id === postId)
+    if (postIndex > -1) {
+      state.posts[postIndex].comments = comments
+    }
+  },
 }

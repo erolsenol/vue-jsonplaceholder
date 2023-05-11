@@ -31,5 +31,8 @@ export default {
       isLike: false,
     }
   },
+  mounted() {
+    this.$store.dispatch('getComments', this.post.id)
+  },
 }
 </script>

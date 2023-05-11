@@ -57,6 +57,10 @@ export default class HttpApi {
     return this.client.put(`users/${id}`, user)
   }
 
+  getCommentsFromPostId(postId) {
+    return this.client.get(`posts/${postId}/comments`)
+  }
+
   customRequest(config) {
     return this.client(config)
   }
