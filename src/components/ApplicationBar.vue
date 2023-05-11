@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar title="Application bar">
+  <v-app-bar class="bg-brown-lighten-5" title="Application bar">
     <template v-slot:prepend>
       <v-app-bar-nav-icon
         @click="

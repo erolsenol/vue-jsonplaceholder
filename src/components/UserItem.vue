@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="500">
+  <v-card max-width="500">
     <v-card-item>
       <v-list-item class="text-start">
         <template v-slot:prepend>

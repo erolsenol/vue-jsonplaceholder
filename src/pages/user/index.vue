@@ -1,10 +1,12 @@
 <template>
-  <v-container class="page-user" fluid>
+  <v-container class="bg-blue-lighten-5" fluid>
     <v-row>
       <v-col
         cols="12"
+        sm="6"
         md="6"
         lg="4"
+        xl="3"
         v-for="(user, index) in getUsers"
         :key="index"
       >
@@ -35,8 +37,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.page-user {
-  position: relative;
-}
-</style>
+<style lang="scss"></style>

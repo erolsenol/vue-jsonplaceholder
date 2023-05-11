@@ -1,5 +1,8 @@
 <template>
-  <v-navigation-drawer v-model="$store.state.navigationDrawerValue">
+  <v-navigation-drawer
+    class="bg-brown-lighten-5"
+    v-model="$store.state.navigationDrawerValue"
+  >
     <v-list>
       <v-list-item
         prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"

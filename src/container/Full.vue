@@ -2,7 +2,7 @@
   <v-layout>
     <ApplicationBar />
     <NavigationDrawer />
-    <v-main class="h-screen">
+    <v-main class="h-screen bg-blue-lighten-5">
       <router-view></router-view>
     </v-main>
   </v-layout>
