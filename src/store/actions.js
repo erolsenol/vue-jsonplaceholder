@@ -6,7 +6,6 @@ export default {
 
     if (postsRes.status == 200 && postsRes.data?.length > 0) {
       state.posts = postsRes.data
-      console.log('postsRes.data', postsRes.data)
     } else {
       commit('showSnackbar', {
         text: 'Post fetch failed',
@@ -19,7 +18,6 @@ export default {
 
     if (usersRes.status === 200 && usersRes.data?.length > 0) {
       state.users = usersRes.data
-      console.log('usersRes.data', usersRes.data)
     } else {
       commit('showSnackbar', {
         text: 'Users fetch failed',
@@ -44,8 +42,6 @@ export default {
   async saveUser({ commit }, { user, id }) {
     const saveUserRes = await HttpConnector.userEdit({ user, id })
     if (saveUserRes.status === 200) {
-      console.log(saveUserRes)
-
       commit('userEditStateChange', { user: saveUserRes.data })
       commit('showSnackbar', {
         text: 'User information has been changed',
