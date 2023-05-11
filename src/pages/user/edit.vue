@@ -5,6 +5,7 @@
       class="panel"
       v-click-outside="{
         handler: onClickOutside,
+        closeConditional: closeConditional,
       }"
     >
       <v-container>
@@ -68,7 +69,7 @@
             class="mr-3"
             variant="tonal"
             color="green"
-            @click.prevent="dialog = false"
+            @click.prevent="userSave"
           >
             Save</v-btn
           >
@@ -76,7 +77,7 @@
             class="mx-3"
             variant="tonal"
             color="red"
-            @click.prevent="dialog = false"
+            @click.prevent="$router.push({ name: 'user' })"
             >Exit</v-btn
           >
         </v-card-actions>
@@ -100,19 +101,22 @@ export default {
       dialog: false,
       userId: -1,
       editUser: { company: {} },
+      originalUser: {},
       loading: false,
     }
   },
   methods: {
-    dialogClose() {
+    dialogClose(e) {
+      e.preventDefault()
       this.dialog = false
     },
-    onClickOutside(e) {
-      if (
-        this.dialog === false &&
-        e.target.className.includes('right-layout')
-      ) {
-        this.dialog = true
+    onClickOutside() {
+      if (this.dialog === false) {
+        if (!this.matchesUser(this.originalUser, this.editUser)) {
+          this.dialog = true
+        } else {
+          this.$router.push({ name: 'user' })
+        }
       }
     },
     async userSave() {
@@ -123,19 +127,31 @@ export default {
       })
       this.loading = false
       if (saveUserRes) {
-        this.$router.go({ name: 'user' })
+        this.$router.push({ name: 'user' })
       }
+    },
+    matchesUser(originalUser = {}, editUser = {}) {
+      const matchRes = Object.keys(originalUser).every(
+        (key) =>
+          // eslint-disable-next-line no-prototype-builtins
+          editUser.hasOwnProperty(key) && editUser[key] === originalUser[key]
+      )
+
+      return matchRes
+    },
+    closeConditional() {
+      return !this.dialog
     },
   },
   async mounted() {
     this.userId = this.$route.params.id
-    console.log(this.userId)
 
     const getUserRes = await this.$store.dispatch('getUser', this.userId)
     if (getUserRes) {
       this.editUser = getUserRes
+      this.originalUser = { ...this.editUser }
     } else {
-      this.$router.go({ name: 'user' })
+      this.$router.push({ name: 'user' })
     }
   },
 }
