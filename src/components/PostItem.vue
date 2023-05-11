@@ -13,6 +13,16 @@
       <v-btn icon @click="isLike = !isLike">
         <v-icon :color="isLike ? 'purple' : 'black'"> fas fa-heart </v-icon>
       </v-btn>
+
+      <v-sheet position="relative">
+        <v-icon class="ms-3" color="black"> fas fa-comment </v-icon>
+        <span
+          v-if="commentCount !== false"
+          position="absolute"
+          class="comment-count bg-grey-lighten-2"
+          >{{ commentCount }}</span
+        >
+      </v-sheet>
     </v-card-actions>
   </v-card>
 </template>
@@ -26,6 +36,11 @@ export default {
       required: true,
     },
   },
+  computed: {
+    commentCount() {
+      return this.post.comments?.length || false
+    },
+  },
   data() {
     return {
       isLike: false,
@@ -36,3 +51,14 @@ export default {
   },
 }
 </script>
+
+<style>
+.comment-count {
+  position: absolute !important;
+  top: -10px !important;
+  right: -8px !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+</style>
