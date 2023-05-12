@@ -18,9 +18,15 @@ export default {
       state.posts[postIndex].comments = comments
     }
   },
-  setUser(state, { username, email }) {
+  setUser(state, { username, email, id }) {
     state.user.username = username
     state.user.email = email
+    state.user.id = id
     state.login = true
+  },
+  clearUser(state) {
+    state.user.username = null
+    state.user.email = null
+    state.login = false
   },
 }

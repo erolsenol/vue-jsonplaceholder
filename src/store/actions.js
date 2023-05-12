@@ -68,7 +68,7 @@ export default {
   async newComment({ commit }, { postId, comment }) {
     commit
     const newCommentRes = await HttpConnector.postComment({ postId, comment })
-    console.log(newCommentRes)
+
     if (newCommentRes.status === 201) {
       return newCommentRes.data
     } else {
@@ -82,11 +82,23 @@ export default {
 
   async loginOrRegisterUser({ commit }, { username, email }) {
     const loginRes = await HttpConnector.loginRequest()
+
     if (loginRes) {
-      commit('setUser', { username, email })
+      const generateId = Math.floor(Math.random() * (9 - 0) + 1)
+      commit('setUser', { username, email, id: generateId })
       localStorage.setItem('login', 'true')
-      localStorage.setItem('user', JSON.stringify({ username, email }))
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ username, email, id: generateId })
+      )
+
       router.push({ name: 'home' })
     }
+  },
+
+  logout({ commit }) {
+    commit('clearUser')
+    localStorage.clear()
+    router.push({ name: 'authLogin' })
   },
 }

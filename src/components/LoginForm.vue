@@ -11,7 +11,11 @@
         label="Username"
       ></v-text-field>
 
-      <v-text-field v-model="email" label="Email"></v-text-field>
+      <v-text-field
+        v-model="email"
+        :rules="[rules.required, rules.email]"
+        label="Email"
+      ></v-text-field>
 
       <v-text-field v-model="password" label="Password"></v-text-field>
       <v-text-field
@@ -20,7 +24,7 @@
         label="Confirm Password"
       ></v-text-field>
 
-      <v-btn type="submit" color="primary" block class="mt-2"
+      <v-btn :loading="loading" type="submit" color="primary" block class="mt-2"
         >{{ !signUp ? 'Sign in' : 'Sign Up' }}
       </v-btn>
     </v-form>
@@ -48,10 +52,19 @@ export default {
       password: '',
       confirmPassword: '',
       signUp: false,
+      loading: false,
+      rules: {
+        required: (value) => !!value || 'Required.',
+        email: (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      },
     }
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       if (!this.username || !this.password || !this.email) {
         this.$store.commit('showSnackbar', {
           text: 'Please fill in all fields',
@@ -67,10 +80,14 @@ export default {
         }
       }
 
-      this.$store.dispatch('loginOrRegisterUser', {
-        username: this.username,
-        email: this.email,
-      })
+      if (this.rules.email(this.email) !== 'Invalid e-mail.') {
+        this.loading = true
+        await this.$store.dispatch('loginOrRegisterUser', {
+          username: this.username,
+          email: this.email,
+        })
+        this.loading = false
+      }
     },
   },
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="500" class="mx-auto bg-grey-lighten-5">
+  <v-card min-width="300" max-width="500" class="mx-auto bg-grey-lighten-5">
     <v-card-text>
       <UserAvatar :userId="post.userId" />
       <p class="text-h5">

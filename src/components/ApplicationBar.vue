@@ -8,11 +8,20 @@
         "
       ></v-app-bar-nav-icon>
     </template>
+
+    <template v-slot:append>
+      <v-btn @click="logout" icon="fas fa-right-from-bracket"></v-btn>
+    </template>
   </v-app-bar>
 </template>
 
 <script>
 export default {
   name: 'ApplicationBar',
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    },
+  },
 }
 </script>

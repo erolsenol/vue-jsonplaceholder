@@ -1,7 +1,12 @@
 <template>
   <v-container class="bg-blue-lighten-5" fluid>
     <v-row>
+      <v-col v-if="getPosts.length === 0"
+        ><span class="text-h5">Posts Loading...</span></v-col
+      >
+
       <v-col
+        v-else
         cols="12"
         sm="6"
         md="4"

@@ -10,6 +10,7 @@
         </template>
         <template v-slot:append>
           <v-btn
+            v-if="$store.state.user.id === user.id"
             color="grey-lighten-1"
             icon="fas fa-edit"
             @click="editClick"
