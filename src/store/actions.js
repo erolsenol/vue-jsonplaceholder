@@ -1,4 +1,5 @@
 import { HttpConnector } from '@/http/clients'
+import router from '@/router'
 
 export default {
   async getPosts({ state, commit }) {
@@ -76,6 +77,16 @@ export default {
         color: 'red',
       })
       return false
+    }
+  },
+
+  async loginOrRegisterUser({ commit }, { username, email }) {
+    const loginRes = await HttpConnector.loginRequest()
+    if (loginRes) {
+      commit('setUser', { username, email })
+      localStorage.setItem('login', 'true')
+      localStorage.setItem('user', JSON.stringify({ username, email }))
+      router.push({ name: 'home' })
     }
   },
 }

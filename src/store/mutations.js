@@ -1,7 +1,4 @@
 export default {
-  increment(state) {
-    state.count++
-  },
   showSnackbar(state, { text, color }) {
     state.snackbar.text = text
     state.snackbar.color = color
@@ -20,5 +17,10 @@ export default {
     if (postIndex > -1) {
       state.posts[postIndex].comments = comments
     }
+  },
+  setUser(state, { username, email }) {
+    state.user.username = username
+    state.user.email = email
+    state.login = true
   },
 }

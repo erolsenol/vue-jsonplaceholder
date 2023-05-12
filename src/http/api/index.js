@@ -65,6 +65,14 @@ export default class HttpApi {
     return this.client.post(`posts/${postId}/comments`, comment)
   }
 
+  loginRequest() {
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(true)
+      }, 1500)
+    )
+  }
+
   customRequest(config) {
     return this.client(config)
   }
