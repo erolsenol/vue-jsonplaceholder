@@ -1,6 +1,7 @@
 <template>
   <v-card max-width="500" class="mx-auto bg-grey-lighten-5">
     <v-card-text>
+      <UserAvatar :userId="post.userId" />
       <p class="text-h5">
         {{ post.title }}
       </p>
@@ -14,40 +15,31 @@
         <v-icon :color="isLike ? 'purple' : 'black'"> fas fa-heart </v-icon>
       </v-btn>
 
-      <v-sheet position="relative">
-        <v-icon class="ms-3" color="black"> fas fa-comment </v-icon>
-        <span
-          v-if="commentCount !== false"
-          position="absolute"
-          class="comment-count bg-grey-lighten-2"
-          >{{ commentCount }}</span
-        >
-      </v-sheet>
+      <v-btn class="ms-1" icon>
+        <v-icon color="black"> fas fa-comment </v-icon>
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import UserAvatar from './UserAvatar.vue'
 export default {
   name: 'PostItem',
+  components: {
+    UserAvatar,
+  },
   props: {
     post: {
       type: Object,
       required: true,
     },
   },
-  computed: {
-    commentCount() {
-      return this.post.comments?.length || false
-    },
-  },
+
   data() {
     return {
       isLike: false,
     }
-  },
-  mounted() {
-    this.$store.dispatch('getComments', this.post.id)
   },
 }
 </script>

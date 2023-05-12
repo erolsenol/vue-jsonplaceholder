@@ -11,4 +11,7 @@ export default {
   getUsers(state) {
     return state.users
   },
+  getIdByUser: (state) => (userId) => {
+    return state.users.find((user) => user.id === userId)
+  },
 }
