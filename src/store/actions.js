@@ -55,6 +55,27 @@ export default {
     const getCommentsRes = await HttpConnector.getCommentsFromPostId(postId)
     if (getCommentsRes.status === 200) {
       commit('setComments', { postId, comments: getCommentsRes.data })
+      return getCommentsRes.data
+    } else {
+      commit('showSnackbar', {
+        text: 'An error occurred while fetching comments',
+        color: 'red',
+      })
+      return false
+    }
+  },
+  async newComment({ commit }, { postId, comment }) {
+    commit
+    const newCommentRes = await HttpConnector.postComment({ postId, comment })
+    console.log(newCommentRes)
+    if (newCommentRes.status === 201) {
+      return newCommentRes.data
+    } else {
+      commit('showSnackbar', {
+        text: 'An error occurred while submitting the comment',
+        color: 'red',
+      })
+      return false
     }
   },
 }

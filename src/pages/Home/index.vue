@@ -12,6 +12,7 @@
         <PostItem :post="post" />
       </v-col>
     </v-row>
+    <router-view :width="600"> </router-view>
   </v-container>
 </template>
 

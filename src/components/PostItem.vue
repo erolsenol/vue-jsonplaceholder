@@ -15,7 +15,7 @@
         <v-icon :color="isLike ? 'purple' : 'black'"> fas fa-heart </v-icon>
       </v-btn>
 
-      <v-btn class="ms-1" icon>
+      <v-btn @click="openComments" class="ms-1" icon>
         <v-icon color="black"> fas fa-comment </v-icon>
       </v-btn>
     </v-card-actions>
@@ -35,11 +35,18 @@ export default {
       required: true,
     },
   },
-
   data() {
     return {
       isLike: false,
     }
+  },
+  methods: {
+    openComments() {
+      this.$router.push({
+        name: `postComments`,
+        params: { postId: this.post.id },
+      })
+    },
   },
 }
 </script>

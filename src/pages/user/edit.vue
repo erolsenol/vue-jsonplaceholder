@@ -2,7 +2,7 @@
   <v-expand-x-transition>
     <v-layout class="right-layout">
       <v-sheet
-        v-bind="$attrs"
+        :width="width"
         class="panel"
         v-click-outside="{
           handler: onClickOutside,
@@ -94,7 +94,7 @@ export default {
   props: {
     width: {
       type: [Number],
-      default: 600,
+      default: 500,
     },
   },
   data() {

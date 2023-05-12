@@ -13,7 +13,7 @@
         <UserItem :user="user" />
       </v-col>
     </v-row>
-    <router-view :width="600"> </router-view>
+    <router-view :width="500"> </router-view>
   </v-container>
 </template>
 

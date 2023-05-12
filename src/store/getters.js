@@ -14,4 +14,7 @@ export default {
   getIdByUser: (state) => (userId) => {
     return state.users.find((user) => user.id === userId)
   },
+  getIdByPost: (state) => (postId) => {
+    return state.posts.find((post) => post.id === Number(postId))
+  },
 }
