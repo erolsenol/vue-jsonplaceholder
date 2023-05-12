@@ -77,6 +77,7 @@ export default {
             text: 'Passwords do not match',
             color: 'red',
           })
+          return
         }
       }
 
