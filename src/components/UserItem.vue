@@ -10,7 +10,6 @@
         </template>
         <template v-slot:append>
           <v-btn
-            class="ma-2"
             color="grey-lighten-1"
             icon="fas fa-edit"
             @click="editClick"

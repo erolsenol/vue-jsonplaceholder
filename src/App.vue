@@ -17,6 +17,9 @@ export default {
   computed: {
     ...mapGetters(['getSnackbar']),
   },
+  mounted() {
+    this.$store.dispatch('getUsers')
+  },
 }
 </script>
 
