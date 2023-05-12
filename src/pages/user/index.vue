@@ -13,9 +13,7 @@
         <UserItem :user="user" />
       </v-col>
     </v-row>
-    <v-expand-x-transition>
-      <router-view :width="600"></router-view>
-    </v-expand-x-transition>
+    <router-view :width="600"> </router-view>
   </v-container>
 </template>
 

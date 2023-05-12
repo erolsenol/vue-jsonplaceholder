@@ -1,89 +1,91 @@
 <template>
-  <v-layout class="right-layout">
-    <v-sheet
-      v-bind="$attrs"
-      class="panel"
-      v-click-outside="{
-        handler: onClickOutside,
-        closeConditional: closeConditional,
-      }"
-    >
-      <v-container>
-        <v-sheet width="300" class="mx-auto">
-          <span class="text-h5 font-weight-bold"> User Edit</span>
-          <v-text-field
-            class="mt-3"
-            v-model="editUser.name"
-            label="Name"
-          ></v-text-field>
-          <v-text-field
-            v-model="editUser.username"
-            label="Username"
-          ></v-text-field>
-          <v-text-field v-model="editUser.phone" label="Phone"></v-text-field>
-          <v-text-field
-            v-model="editUser.website"
-            label="Website"
-          ></v-text-field>
+  <v-expand-x-transition>
+    <v-layout class="right-layout">
+      <v-sheet
+        v-bind="$attrs"
+        class="panel"
+        v-click-outside="{
+          handler: onClickOutside,
+          closeConditional: closeConditional,
+        }"
+      >
+        <v-container>
+          <v-sheet width="300" class="mx-auto">
+            <span class="text-h5 font-weight-bold"> User Edit</span>
+            <v-text-field
+              class="mt-3"
+              v-model="editUser.name"
+              label="Name"
+            ></v-text-field>
+            <v-text-field
+              v-model="editUser.username"
+              label="Username"
+            ></v-text-field>
+            <v-text-field v-model="editUser.phone" label="Phone"></v-text-field>
+            <v-text-field
+              v-model="editUser.website"
+              label="Website"
+            ></v-text-field>
 
-          <span class="text-h6 font-weight-bold"> Company</span>
-          <v-text-field
-            v-model="editUser.company.name"
-            label="Company Name"
-          ></v-text-field>
-          <v-text-field
-            v-model="editUser.company.bs"
-            label="Company Business"
-          ></v-text-field>
-          <v-text-field
-            v-model="editUser.company.catchPhrase"
-            label="Catch Phrase"
-          ></v-text-field>
-          <v-btn
-            width="100"
-            variant="tonal"
-            color="green"
-            :loading="loading"
-            @click.prevent="userSave"
-          >
-            Save</v-btn
-          >
-        </v-sheet>
-      </v-container>
-    </v-sheet>
-    <v-dialog
-      v-model="dialog"
-      transition="dialog-bottom-transition"
-      width="auto"
-      persistent
-    >
-      <v-card>
-        <template v-slot:append>
-          <v-btn @click="dialogClose" icon="fas fa-xmark"></v-btn>
-        </template>
-        <v-card-text>
-          <div class="text-h5 pa-7">Do you want to save your changes</div>
-        </v-card-text>
-        <v-card-actions class="justify-space-around">
-          <v-btn
-            class="mr-3"
-            variant="tonal"
-            color="green"
-            @click.prevent="userSave"
-          >
-            Save</v-btn
-          >
-          <v-btn
-            class="mx-3"
-            variant="tonal"
-            color="red"
-            @click.prevent="$router.push({ name: 'user' })"
-            >Exit</v-btn
-          >
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-layout>
+            <span class="text-h6 font-weight-bold"> Company</span>
+            <v-text-field
+              v-model="editUser.company.name"
+              label="Company Name"
+            ></v-text-field>
+            <v-text-field
+              v-model="editUser.company.bs"
+              label="Company Business"
+            ></v-text-field>
+            <v-text-field
+              v-model="editUser.company.catchPhrase"
+              label="Catch Phrase"
+            ></v-text-field>
+            <v-btn
+              width="100"
+              variant="tonal"
+              color="green"
+              :loading="loading"
+              @click.prevent="userSave"
+            >
+              Save</v-btn
+            >
+          </v-sheet>
+        </v-container>
+      </v-sheet>
+      <v-dialog
+        v-model="dialog"
+        transition="dialog-bottom-transition"
+        width="auto"
+        persistent
+      >
+        <v-card>
+          <template v-slot:append>
+            <v-btn @click="dialogClose" icon="fas fa-xmark"></v-btn>
+          </template>
+          <v-card-text>
+            <div class="text-h5 pa-7">Do you want to save your changes</div>
+          </v-card-text>
+          <v-card-actions class="justify-space-around">
+            <v-btn
+              class="mr-3"
+              variant="tonal"
+              color="green"
+              @click.prevent="userSave"
+            >
+              Save</v-btn
+            >
+            <v-btn
+              class="mx-3"
+              variant="tonal"
+              color="red"
+              @click.prevent="$router.push({ name: 'user' })"
+              >Exit</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-layout>
+  </v-expand-x-transition>
 </template>
 
 <script>
