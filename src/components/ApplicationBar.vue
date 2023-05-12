@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar class="bg-brown-lighten-5" title="Application bar">
+  <v-app-bar class="bg-brown-lighten-5" title="Json Place Holder Project">
     <template v-slot:prepend>
       <v-app-bar-nav-icon
         @click="
