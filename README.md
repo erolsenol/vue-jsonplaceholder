@@ -1,20 +1,17 @@
-# Vue JSONPlaceholder example
+# Vue API example
 
-An older Vue application that reads a configurable API endpoint.
+A Vue 3 application for browsing API-backed posts and users, built with Vuetify, Vue Router, Vuex, and Vite. This is a learning project, not a hosted production service.
 
-> **Status:** Historical example; currently not actively maintained.
+## Run locally
 
-## Local commands
-
-These commands reflect the repository scripts. This historical project has not been validated against current runtimes.
+Requires Node.js 22.12 or newer.
 
 ```sh
-npm install
-npm run serve
-npm run build
+cp .env.example .env
+npm ci
+npm run dev
 ```
-Copy `.env.example` to `.env` and configure `VUE_APP_BASE_URL` for your own API.
 
-## Use and maintenance
+`VITE_API_BASE_URL` selects the API endpoint. The default example uses JSONPlaceholder; editing routes need an API that supports writes. Run `npm run build` and `npm audit --audit-level=high` before publishing changes.
 
-This repository is retained as a public record of earlier work. Dependencies and third-party services may have changed. Review the source and configuration before running it. No license is granted unless a `LICENSE` file is present.
+No license is granted in this repository.

@@ -1,3 +1,3 @@
 import HttpApi from './api'
 
-export const HttpConnector = new HttpApi(process.env.VUE_APP_BASE_URL)
+export const HttpConnector = new HttpApi(import.meta.env.VITE_API_BASE_URL)

@@ -1,9 +1,9 @@
-import Auth from '@/container/Auth'
-import Full from '@/container/Full'
+import Auth from '@/container/Auth.vue'
+import Full from '@/container/Full.vue'
 
-import Home from '@/pages/home'
-import PostComments from '@/pages/home/post-comments.vue'
-import User from '@/pages/user'
+import Home from '@/pages/Home/index.vue'
+import PostComments from '@/pages/Home/post-comments.vue'
+import User from '@/pages/user/index.vue'
 import UserEdit from '@/pages/user/edit.vue'
 
 const routes = [
@@ -18,7 +18,7 @@ const routes = [
     children: [
       {
         path: '/auth/login',
-        component: () => import('@/components/LoginForm'),
+        component: () => import('@/components/LoginForm.vue'),
         name: 'authLogin',
         meta: {
           requiresAuth: false,
