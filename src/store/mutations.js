@@ -25,6 +25,7 @@ export default {
     state.login = true
   },
   clearUser(state) {
+    state.user.id = null
     state.user.username = null
     state.user.email = null
     state.login = false
