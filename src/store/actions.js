@@ -1,11 +1,12 @@
 import { HttpConnector } from '@/http/clients'
 import router from '@/router'
+import { saveSession, clearSession } from './session'
 
-export default {
+const actions = {
   async getPosts({ state, commit }) {
     const postsRes = await HttpConnector.getAllPosts()
 
-    if (postsRes.status == 200 && postsRes.data?.length > 0) {
+    if (postsRes.status == 200 && Array.isArray(postsRes.data)) {
       state.posts = postsRes.data
     } else {
       commit('showSnackbar', {
@@ -17,7 +18,7 @@ export default {
   async getUsers({ state, commit }) {
     const usersRes = await HttpConnector.getAllUsers()
 
-    if (usersRes.status === 200 && usersRes.data?.length > 0) {
+    if (usersRes.status === 200 && Array.isArray(usersRes.data)) {
       state.users = usersRes.data
     } else {
       commit('showSnackbar', {
@@ -66,7 +67,6 @@ export default {
     }
   },
   async newComment({ commit }, { postId, comment }) {
-    commit
     const newCommentRes = await HttpConnector.postComment({ postId, comment })
 
     if (newCommentRes.status === 201) {
@@ -86,19 +86,32 @@ export default {
     if (loginRes) {
       const generateId = Math.floor(Math.random() * (9 - 0) + 1)
       commit('setUser', { username, email, id: generateId })
-      localStorage.setItem('login', 'true')
-      localStorage.setItem(
-        'user',
-        JSON.stringify({ username, email, id: generateId })
-      )
+      if (!saveSession({ username, email, id: generateId })) {
+        commit('showSnackbar', { text: 'Signed in for this tab, but the session could not be saved', color: 'red' })
+      }
 
-      router.push({ name: 'home' })
+      await router.push({ name: 'home' })
     }
   },
 
-  logout({ commit }) {
+  async logout({ commit }) {
     commit('clearUser')
-    localStorage.clear()
-    router.push({ name: 'authLogin' })
+    if (!clearSession()) {
+      commit('showSnackbar', { text: 'Signed out, but saved session data could not be removed', color: 'red' })
+    }
+    await router.push({ name: 'authLogin' })
   },
 }
+
+// Every UI action reports rejected network requests through the existing snackbar.
+export default Object.fromEntries(Object.entries(actions).map(([name, action]) => [
+  name,
+  async (context, payload) => {
+    try {
+      return await action(context, payload)
+    } catch {
+      context.commit('showSnackbar', { text: 'Request failed. Please try again.', color: 'red' })
+      return false
+    }
+  },
+]))
